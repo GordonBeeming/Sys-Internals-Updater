@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:models="clr-namespace:SysInternalsUpdater">
+    <DataTemplate x:Key="SysInternalFileTemplate">
+        <Border CornerRadius="5"
+                Background="{x:Null}"
+                HorizontalAlignment="Stretch"
+                Padding="5"
+                Margin="3">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        Width="auto"
+                        Background="{x:Null}">
+                <TextBlock Text="[New]"
+                           Visibility="{Binding IsNewVisibility}"></TextBlock>
+                <Button Content="download" Margin="15,0,0,0"
+                        IsEnabled="{Binding ShowDownloadNow}"
+                        Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding RelativePath}"
+                        HorizontalAlignment="Right"></Button>
+                <Button Content="update"
+                        Margin="15,0,0,0"
+                        IsEnabled="{Binding ShowUpdateNow}"
+                        Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding RelativePath}"
+                        HorizontalAlignment="Right"></Button>
+                <TextBlock HorizontalAlignment="Stretch" Margin="15,0,0,0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} ({1})">
+                            <Binding Path="FileName" />
+                            <Binding Path="FileSizeString" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Last Date Change: "
+                           Margin="20,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding LastChangedOnDisplay}"></TextBlock>
+                <TextBlock Text="Current Files Date: "
+                           Margin="20,0,0,0"
+                           Visibility="{Binding ShowUpdateVisibility}"></TextBlock>
+                <TextBlock Text="{Binding CurrentFileDateDisplay}"
+                           Visibility="{Binding ShowUpdateVisibility}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

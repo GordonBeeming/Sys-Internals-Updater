@@ -24,6 +24,12 @@
                         Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                         CommandParameter="{Binding RelativePath}"
                         HorizontalAlignment="Right"></Button>
+                <Button Content="open"
+                        Margin="15,0,0,0"
+                        IsEnabled="{Binding ShowOpen}"
+                        Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                        CommandParameter="{Binding RelativePath}"
+                        HorizontalAlignment="Right"></Button>
                 <TextBlock HorizontalAlignment="Stretch" Margin="15,0,0,0">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} ({1})">

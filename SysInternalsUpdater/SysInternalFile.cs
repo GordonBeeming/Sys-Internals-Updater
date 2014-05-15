@@ -184,6 +184,19 @@ namespace SysInternalsUpdater
             }
         }
 
+        private bool showOpen = false;
+        public bool ShowOpen
+        {
+            get
+            {
+                return showOpen;
+            }
+            set
+            {
+                base.UpdateProperty(ref showOpen, value);
+            }
+        }
+
         public Visibility ShowUpdateVisibility
         {
             get
@@ -219,6 +232,7 @@ namespace SysInternalsUpdater
             DownloadFrom = Path.Combine(LiveSysInternals.LiveSysInternalsUrl, RelativePath.TrimStart('/'));
             ShowDownloadNow = !File.Exists(SaveFileTo) && !IsDownloading;
             ShowUpdateNow = File.Exists(SaveFileTo) && !IsDownloading && LastChangedOn != File.GetCreationTime(SaveFileTo);
+            ShowOpen = File.Exists(SaveFileTo) && !IsDownloading;
         }
 
         private string relativePath = string.Empty;

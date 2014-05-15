@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using System.Windows.Input;
 using System.IO;
+using System.Diagnostics;
 
 namespace SysInternalsUpdater
 {
@@ -18,6 +19,7 @@ namespace SysInternalsUpdater
             RefreshContentCommand = new RelayCommand(o => RefreshContent());
             DownloadFileCommand = new RelayCommand(o => DownloadFile(o));
             DownloadAllFilesCommand = new RelayCommand(o => DownloadAllFiles());
+            OpenFileCommand = new RelayCommand(o => OpenFile(o));
 
             RefreshContent();
         }
@@ -125,6 +127,15 @@ namespace SysInternalsUpdater
             }
         }
 
+        public async Task OpenFile(object cmdRelPath)
+        {
+            SysInternalFile file = Files.FirstOrDefault(o => o.RelativePath == cmdRelPath.ToString());
+            if (file != null)
+            {
+                Process.Start(file.SaveFileTo);
+            }
+        }
+
         public async Task DownloadFile(object cmdRelPath)
         {
             SysInternalFile file = Files.FirstOrDefault(o => o.RelativePath == cmdRelPath.ToString());
@@ -145,6 +156,7 @@ namespace SysInternalsUpdater
         public static ICommand RefreshContentCommand { get; private set; }
         public static ICommand DownloadFileCommand { get; internal set; }
         public static ICommand DownloadAllFilesCommand { get; internal set; }
+        public static ICommand OpenFileCommand { get; internal set; }
 
     }
 }

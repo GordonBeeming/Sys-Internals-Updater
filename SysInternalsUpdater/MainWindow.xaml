@@ -25,9 +25,6 @@
             <TextBox Width="400"
                      Text="{Binding SaveFilesTo, Mode=TwoWay}"
                      Margin="5"></TextBox>
-            <Button Content="Save"
-                    IsEnabled="{Binding SaveFilesToGood}"
-                    Margin="5"></Button>
         </StackPanel>
 
         <StackPanel Grid.Row="0"

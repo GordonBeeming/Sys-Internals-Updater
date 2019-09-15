@@ -12,7 +12,7 @@ namespace SysInternalsUpdater
 {
     internal class LiveSysInternals : ViewModelBase
     {
-        public static readonly string LiveSysInternalsUrl = "http://live.sysinternals.com/";
+        public static readonly string LiveSysInternalsUrl = "https://live.sysinternals.com/";
 
         public LiveSysInternals()
         {
@@ -68,7 +68,7 @@ namespace SysInternalsUpdater
                     base.UpdateProperty(ref saveFilesTo, value);
                     Properties.Settings.Default.LastSaveToLocation = value;
                     Properties.Settings.Default.Save();
-                    SaveFilesToChanged(value);
+                    SaveFilesToChanged.Invoke(value);
                 }
             }
         }
